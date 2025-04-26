@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+<section class="hero">
+  <h1>Welcome to State Life Insurance</h1>
+</section>
+<section id="announcements" class="grid-container">
+  <% announcements.forEach(a => { %>
+    <div class="card">
+      <h3><%= a.title %></h3>
+      <p><%= a.content %></p>
+      <time><%= new Date(a.publishedAt).toDateString() %></time>
+    </div>
+  <% }) %>
+</section>
+<%- include('partials/footer') %>

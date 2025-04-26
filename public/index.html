@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Life Area Manager</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    
+
+   <!-- Navigation -->
+<nav class="sticky-nav">
+    <!-- Modern Logo -->
+    <div class="logo-container">
+        <img src="/assets/icons/logo.png" alt="State Life Logo" class="logo">
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="join.html">Join Us</a>
+        <a href="contact.html">Contact</a>
+
+        <!-- Theme Toggle Inside Nav -->
+        <button id="theme-toggle" title="Toggle Dark Mode">🌓</button>
+    </div>
+</nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="/assets/images/vatter.png" alt="Area Manager" class="manager-photo">
+        <h1>Safdar Siddique – State Life Area Manager</h1>
+        <p>Proudly Serving with Government-Backed Life Insurance</p>
+        <button class="cta-button"
+            onclick="window.location.href='services.html'">
+            View Services
+    </button>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>Client Testimonials</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <img src="/assets/images/vatter.png" alt="Client 1">
+                <blockquote>"State Life helped me claim my policy smoothly!"</blockquote>
+                <p>- Safdar, Lahore</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="/assets/images/vatter.png" alt="Client 2">
+                <blockquote>"Professional team and great service!"</blockquote>
+                <p>- S2, Karachi</p>
+            </div>
+            <div class="testimonial-card">
+                <img src="/assets/images/vatter.png" alt="Client 3">
+                <blockquote>"Very trustworthy and reliable."</blockquote>
+                <p>- S3, Islamabad</p>
+            </div>
+    
+            <!-- Arrow Buttons -->
+            <button class="prev" onclick="manualSlide(-1)">❮</button>
+            <button class="next" onclick="manualSlide(1)">❯</button>
+        </div>
+    </section>
+    
+
+
+    <!----------- end testimony------>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

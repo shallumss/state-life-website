@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+<section class="content">
+  <h2>Join Our Team</h2>
+  <% if (applied) { %><p class="success">Application received!</p><% } %>
+  <form method="POST" action="/join" enctype="multipart/form-data" class="form">
+    <input name="name" placeholder="Name" required>
+    <input name="email" type="email" placeholder="Email" required>
+    <input name="resume" type="file" accept=".pdf,.doc,.docx" required>
+    <button type="submit">Apply</button>
+  </form>
+</section>
+<%- include('partials/footer') %>
