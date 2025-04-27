@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://safdarsiddique.onrender.com/sitemap.xml
