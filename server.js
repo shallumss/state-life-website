@@ -33,6 +33,11 @@ app.get('/contact', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'contact.html'));
 });
 
+app.get('/sitemap', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+  });
+  
+
 // Get all announcements
 app.get('/api/announcements', (req, res) => {
     res.json(announcements);
