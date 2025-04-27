@@ -18,22 +18,31 @@ window.addEventListener('DOMContentLoaded', () => {
 // js/script.js
 
 (function() {
-    // Wait until the DOM is fully loaded
     document.addEventListener('DOMContentLoaded', () => {
-      const hamburger  = document.getElementById('hamburger-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-  
-      if (!hamburger || !mobileMenu) {
-        console.error('Hamburger button or mobile menu element not found!');
-        return;
-      }
-  
-      // Toggle the mobile menu’s visibility and aria-expanded
-      hamburger.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('open');
-        hamburger.setAttribute('aria-expanded', String(isOpen));
+        console.log("DOM loaded");
+        const hamburger = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (hamburger && mobileMenu) {
+          hamburger.addEventListener('click', () => {
+            console.log("Hamburger clicked"); 
+            mobileMenu.classList.toggle('open'); // This line should toggle the menu visibility
+            hamburger.classList.toggle('open');
+          });
+        } else {
+          console.error('Hamburger or mobile menu not found!');
+        }
+        
+        // This event listener might be causing issues - let's remove it for now
+        /* document.addEventListener('click', (event) => {
+          if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+            if (mobileMenu.classList.contains('open')) {
+              mobileMenu.classList.remove('open');
+              hamburger.classList.remove('open');
+            }
+          }
+        }); */
       });
-    });
   })();
   
   
@@ -105,3 +114,55 @@ document.addEventListener('DOMContentLoaded', () => {
   showSlides(slideIndex);
   startGalleryAuto();
 });
+
+// Global testimonial index
+let testimonialIndex = 0;
+
+// Function to show specific testimonial by index
+function showTestimonial(index) {
+  const cards = document.querySelectorAll('.testimonial-card');
+  
+  if (cards.length === 0) return;
+  
+  // Hide all testimonials first
+  cards.forEach(card => {
+    card.style.display = 'none';
+  });
+  
+  // Show the current testimonial
+  cards[index].style.display = 'block';
+}
+
+// Function for manual navigation with the arrow buttons
+function manualSlide(step) {
+  const cards = document.querySelectorAll('.testimonial-card');
+  
+  if (cards.length === 0) return;
+  
+  // Calculate new index with wraparound
+  testimonialIndex = (testimonialIndex + step + cards.length) % cards.length;
+  
+  // Show the new current testimonial
+  showTestimonial(testimonialIndex);
+}
+
+// Function to start automatic slideshow
+function startTestimonialSlideshow() {
+  setInterval(() => {
+    manualSlide(1); // Move forward by 1
+  }, 5000); // Change every 5 seconds
+}
+
+// Initialize testimonials when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize testimonials - show the first one
+  showTestimonial(0);
+  
+  // Start automatic slideshow
+  startTestimonialSlideshow();
+  
+  // Log for debugging
+  console.log('Testimonial slideshow initialized');
+});
+
+

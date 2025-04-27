@@ -127,87 +127,138 @@ body.dark-theme .nav-links a {
 
 /* Mobile Responsive */
 /* Show hamburger on small screens */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none !important; /* Hide standard nav */
+  }
+  
   .hamburger {
-    display: block;
+    display: block !important; /* Force display of hamburger */
   }
 
-  .nav-links {
-    display: none;
+  .sticky-nav {
+    justify-content: space-between; /* Space between logo and hamburger */
   }
 }
 
 /* ----------------- */
 /* Mobile menu (initially hidden) */
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: var(--primary-blue);
-  padding: 1rem;
-  position: absolute;
-  top: 70px; /* under navbar */
-  right: 1rem;
-  left: 1rem;
-  z-index: 999;
-  border-radius: 10px;
+/* Improve spacing between theme toggle and hamburger */
+.sticky-nav {
+  padding: 1rem 1.5rem; /* Even padding on both sides */
+  justify-content: space-between; /* Better distribute the elements */
 }
 
+/* Logo container adjustments */
+.logo-container {
+  flex: 1; /* Take up available space */
+  display: flex;
+  align-items: center;
+}
+
+/* Create a container for the buttons */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Add space between buttons */
+}
+
+/* Theme toggle button improvements */
+#theme-toggle {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s, color 0.3s;
+  color: white;
+  padding: 0; /* Remove default padding */
+}
+
+/* Hamburger button improvements */
+.hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  border: 2px solid white;
+  border-radius: 8px; /* Squared corners but still rounded */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  z-index: 9999;
+}
+
+/* Make hamburger icon more distinctive */
+.hamburger-icon,
+.hamburger-icon::before,
+.hamburger-icon::after {
+  display: block;
+  width: 24px; /* Slightly smaller for better aesthetics */
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+/* Add animation for when the menu is open */
+.hamburger.open .hamburger-icon {
+  transform: rotate(45deg);
+}
+
+.hamburger.open .hamburger-icon::before {
+  opacity: 0;
+}
+
+.hamburger.open .hamburger-icon::after {
+  transform: translateY(-8px) rotate(-90deg);
+}
+
+/* Mobile menu improvements */
+/* Mobile menu styling */
+.mobile-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 80px; /* Position below the navbar */
+  left: 0;
+  right: 0;
+  background-color: var(--primary-blue);
+  z-index: 998;
+  padding: 1rem 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* When menu is open */
+.mobile-menu.open {
+  display: flex !important; /* Force display when open */
+  flex-direction: column;
+}
 
 .mobile-menu a {
   color: white;
   text-decoration: none;
-  margin: 0.5rem 0;
-}
-.mobile-menu.open {
-  display: flex;
-  flex-direction: column;
-  background: var(--primary-blue);
-  padding: 1rem;
-  position: absolute;
-  top: 70px;
-  right: 0;
-  left: 0;
-  z-index: 1000;
+  padding: 1rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-
-/* --------*/
-/* Hamburger button */
-.hamburger {
-  display: none; /* hidden on larger screens */
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1002; /* above other elements */
+.mobile-menu a:hover {
+  background-color: rgba(255,255,255,0.1);
 }
-
-.hamburger-icon {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: #fff; /*333 */
-  position: relative;
-}
-
-.hamburger-icon::before,
-.hamburger-icon::after {
-  content: '';
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: #fff; /*333 */
-  position: absolute;
-  left: 0;
-  transition: 0.3s;
-}
-
-.hamburger-icon::before {
-  top: -8px;
-}
-
-.hamburger-icon::after {
-  top: 8px;
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none !important;
+  }
+  
+  .hamburger {
+    display: flex !important; /* Use flex for centering the icon */
+  }
 }
 
 
@@ -237,7 +288,7 @@ body.dark-theme .nav-links a {
   font-weight: bold;
   font-size: 1.2rem;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgb(126, 182, 239);;
   width: 250px;
   color: #333; /* 👈 Text color in light mode */
 }
@@ -255,6 +306,7 @@ body.dark-theme .nav-links a {
 body.dark-theme .role {
   background-color: #333; /* Slightly lighter dark box */
   color: #f5f5f5; /*  Text becomes light in dark mode */
+  box-shadow: 0 2px 6px rgb(126, 182, 239);; /* soft light shadow */
 }
 
 body.dark-theme .arrow {
@@ -266,10 +318,11 @@ body.dark-theme .arrow {
 /* Services Page Styles */
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 2rem;
 }
+
 
 .service-card {
   background: var(--light-bg);
@@ -284,34 +337,15 @@ body.dark-theme .arrow {
   margin: 2rem;
 }
 
-/* Contact Page Styles */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 2rem;
-  padding: 2rem;
-}
 
-.contact-form input, .contact-form textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border: 1px solid #ccc;
-}
 
-.contact-form button {
-  background: var(--gold);
-  padding: 0.5rem 2rem;
-  border: none;
-  cursor: pointer;
-}
 
 
 /* services card 8 */
 .service-card {
   background: #ffffff;
   border: 1px solid #ddd; /* subtle gray border */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* soft shadow */
+  box-shadow: 0 2px 8px  rgb(126, 182, 239); /* soft shadow */
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -322,31 +356,11 @@ body.dark-theme .service-card {
   background: #444; /* darker card in dark mode */
   border: 1px solid #666; /* darker border */
   color: #f5f5f5; /* light text */
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05); /* soft light shadow */
+  box-shadow: 0 2px 8px rgb(126, 182, 239);; /* soft light shadow */
 }
 
 
-/* contact info */
 
-.contact-info h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #0077cc; /* nice blue for icons */
-}
-
-.contact-info p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #444;
-}
-
-body.dark-theme .contact-info p {
-    color: #ccc; /* lighter text in dark mode */
-}
-
-body.dark-theme .contact-info h2 {
-    color: #66ccff;
-}
 
 
 /* testimonials style */
@@ -429,3 +443,156 @@ body.dark-theme .next:hover {
 
 
 /* end testimonials */
+
+
+
+/* contact style */
+
+/* ——— Contact Section Base ——— */
+.contact-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.contact-section h1 {
+  text-align: center;
+  font-size: 2.25rem;
+  margin-bottom: 2rem;
+  color: var(--primary-blue);
+}
+
+/* 1. Contact Info */
+.contact-info {
+  background: var(--light-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(126, 182, 239);
+  margin-bottom: 2rem;
+}
+
+.contact-info h2 {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--primary-blue);
+}
+
+.contact-info p {
+  margin: 0.5rem 0 1rem;
+  line-height: 1.5;
+}
+
+/* 2. Map Container */
+.map-container {
+  border: 2px solid var(--primary-blue);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+/* 3. Modern Directions Button */
+.get-directions {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.btn-directions {
+  background: var(--accent-green);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 12px  rgb(126, 182, 239);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-directions:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px  rgb(126, 182, 239);;
+}
+
+/* 4. Contact Form */
+.contact-form {
+  background: var(--light-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(126, 182, 239);;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.btn-submit {
+  align-self: flex-start;
+  background: var(--primary-blue);
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 12px  rgb(126, 182, 239);;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgb(126, 182, 239);;
+}
+
+/* Responsive: single-column on small */
+@media (max-width: 600px) {
+  .btn-submit,
+  .btn-directions {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Dark-mode overrides for Contact Section */
+body.dark-theme .contact-section {
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+}
+
+/* Dark-mode map border */
+body.dark-theme .map-container {
+  border-color: var(--text-light);
+}
+
+/* Dark-mode “Get Directions” button */
+body.dark-theme .btn-directions {
+  background: var(--gold);      /* or pick a lighter accent */
+  color: var(--dark-bg);
+}
+
+/* Dark-mode form background & inputs */
+body.dark-theme .contact-form {
+  background-color: #444;
+}
+body.dark-theme .contact-form input,
+body.dark-theme .contact-form textarea {
+  background-color: #333;
+  color: #eee;
+  border-color: #555;
+}
+body.dark-theme .btn-submit {
+  background: var(--accent-green);
+  color: var(--text-light);
+}
+
+
+/* Contact Form end */
